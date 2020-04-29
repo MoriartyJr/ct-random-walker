@@ -10,11 +10,11 @@
 
 #include "walker.h"
 
-Walker::Walker()
+Walker::Walker(int x, int y)
 {
-    Walker::SetCoord({200, 200});
-    Walker::SetColor({255, 255, 255});
-    Walker::SetSize(4);
+    Walker::SetCoord({x, y});
+    Walker::SetColor({rand() % 255, rand() % 255, rand() % 255});
+    Walker::SetSize(1);
     Walker::SetType("default");
     return;
 }
