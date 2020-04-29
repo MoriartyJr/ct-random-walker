@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F144D6224597A9E00F2FB62 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F144D6124597A9E00F2FB62 /* main.cpp */; };
+		6FE90FCA24599BF300116D2D /* walker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FE90FC824599BF300116D2D /* walker.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +27,8 @@
 		6F144D5E24597A9E00F2FB62 /* ct-random-walker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ct-random-walker"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F144D6124597A9E00F2FB62 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		6F144D6324597A9E00F2FB62 /* olcPixelGameEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = olcPixelGameEngine.h; sourceTree = "<group>"; };
+		6FE90FC824599BF300116D2D /* walker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = walker.cpp; sourceTree = "<group>"; };
+		6FE90FC924599BF300116D2D /* walker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = walker.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +63,8 @@
 			children = (
 				6F144D6124597A9E00F2FB62 /* main.cpp */,
 				6F144D6324597A9E00F2FB62 /* olcPixelGameEngine.h */,
+				6FE90FC824599BF300116D2D /* walker.cpp */,
+				6FE90FC924599BF300116D2D /* walker.h */,
 			);
 			path = "ct-random-walker";
 			sourceTree = "<group>";
@@ -122,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F144D6224597A9E00F2FB62 /* main.cpp in Sources */,
+				6FE90FCA24599BF300116D2D /* walker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
