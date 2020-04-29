@@ -34,9 +34,23 @@ public:
         int red;
         int green;
         int blue;
+        
+        sColor(int colorCode)
+        {
+            this->red = colorCode >> 16;
+            this->green = (((colorCode >> 8) << 8) - ((colorCode >> 16) << 16)) >> 8;
+            this->blue = (colorCode) - ((colorCode >> 8) << 8);
+        };
+        
+        sColor(int red, int green, int blue)
+        {
+            this->red = red;
+            this->green = green;
+            this->blue = blue;
+        }
     };
     
-    Walker();
+    Walker(int x, int y);
     Walker(int x, int y, int red, int green, int blue, int size, std::string type);
     Walker(sCoord coord, sColor color, int size, std::string type);
     
@@ -83,7 +97,7 @@ public:
     
     sColor GetColor()
     {
-        return {red, green, blue};
+        return sColor(red, green, blue);
     };
     
     int GetSize()
