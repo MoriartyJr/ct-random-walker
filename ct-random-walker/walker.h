@@ -11,6 +11,9 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+#include <algorithm>
+#include <cctype>
 #include <stdio.h>
 
 class Walker
@@ -22,7 +25,7 @@ private:
     int green;
     int blue;
     int size;
-    std::string type;
+    int type;
     
 public:
     struct sCoord {
@@ -50,9 +53,15 @@ public:
         }
     };
     
+    sCoord stepDir;
+    
     Walker(int x, int y);
-    Walker(int x, int y, int red, int green, int blue, int size, std::string type);
-    Walker(sCoord coord, sColor color, int size, std::string type);
+    Walker(int x, int y, int red, int green, int blue, int size, int type);
+    Walker(sCoord coord, sColor color, int size, int type);
+    
+    void TakeRandomStep();
+    void DefaultStep();
+    void LevyStep();
     
     void SetCoord(int x, int y)
     {
@@ -85,7 +94,7 @@ public:
         this->size = size;
     }
     
-    void SetType(std::string type)
+    void SetType(int type)
     {
         this->type = type;
     };
