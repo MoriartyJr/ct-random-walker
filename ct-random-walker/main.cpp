@@ -9,24 +9,13 @@
 
 class RandomWalker : public olc::PixelGameEngine {
 public:
-    int levyRand;
-    int stepSizeX;
-    int stepSizeY;
     float timer;
-    
-    struct sPos
-    {
-        int x;
-        int y;
-    };
     
     struct Color {
         int red;
         int green;
         int blue;
     };
-    
-    sPos stepTo;
     
     std::vector<Walker> vecWalker;
     std::vector<Walker::sColor> vecPalette;
@@ -92,23 +81,6 @@ protected:
         return;
     }
     
-    void randomizedDirection(Walker &walker) {
-        
-        stepSizeX = 1;
-        stepSizeY = 1;
-        levyRand = rand() % 100;
-        stepTo = {(rand() % 3)-1, (rand() % 3)-1};
-        
-        if (levyRand < 1) {
-            stepSizeX = (rand() % 25) + 5;
-            stepSizeY = (rand() % 25) + 5;
-        }
-        
-        walker.SetCoord(walker.GetCoord().x + (stepTo.x * stepSizeX), walker.GetCoord().y + (stepTo.y * stepSizeY));
-        
-        return;
-    }
-    
     bool OnUserCreate() override
     {
         // Called once at the start, so create things here
@@ -118,7 +90,7 @@ protected:
         
         Clear(olc::Pixel(74, 72, 69));
         
-        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 1, "default"));
+        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 1, rand() % 2));
         
         return true;
     }
@@ -128,15 +100,14 @@ protected:
         timer += fElapsedTime;
         
         if (timer >= 10.0F) {
-            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 1, "default"));
+            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 1, rand() % 2));
             timer = 0;
         }
         
         for (auto &w : vecWalker)
         {
             Walker prevWalker = w;
-            
-            randomizedDirection(w);
+            w.TakeRandomStep();
             correctOutOfBounce(w);
             
             FillCircle(w.GetCoord().x, w.GetCoord().y, w.GetSize(),
