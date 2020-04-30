@@ -9,14 +9,24 @@
 
 class RandomWalker : public olc::PixelGameEngine {
 public:
-    int r;
+    int levyRand;
+    int stepSizeX;
+    int stepSizeY;
     float timer;
+    
+    struct sPos
+    {
+        int x;
+        int y;
+    };
     
     struct Color {
         int red;
         int green;
         int blue;
     };
+    
+    sPos stepTo;
     
     std::vector<Walker> vecWalker;
     std::vector<Walker::sColor> vecPalette;
@@ -84,24 +94,18 @@ protected:
     
     void randomizedDirection(Walker &walker) {
         
-        r = rand() % 4;
+        stepSizeX = 1;
+        stepSizeY = 1;
+        levyRand = rand() % 100;
+        stepTo = {(rand() % 3)-1, (rand() % 3)-1};
         
-        switch (r) {
-            case 0:
-                walker.SetCoord(walker.GetCoord().x + 1, walker.GetCoord().y);
-                break;
-            case 1:
-                walker.SetCoord(walker.GetCoord().x - 1, walker.GetCoord().y);
-                break;
-            case 2:
-                walker.SetCoord(walker.GetCoord().x, walker.GetCoord().y + 1);
-                break;
-            case 3:
-                walker.SetCoord(walker.GetCoord().x, walker.GetCoord().y - 1);
-                break;
-            default:
-                break;
+        if (levyRand < 1) {
+            stepSizeX = (rand() % 25) + 5;
+            stepSizeY = (rand() % 25) + 5;
         }
+        
+        walker.SetCoord(walker.GetCoord().x + (stepTo.x * stepSizeX), walker.GetCoord().y + (stepTo.y * stepSizeY));
+        
         return;
     }
     
@@ -130,6 +134,11 @@ protected:
         
         for (auto &w : vecWalker)
         {
+            Walker prevWalker = w;
+            
+            randomizedDirection(w);
+            correctOutOfBounce(w);
+            
             FillCircle(w.GetCoord().x, w.GetCoord().y, w.GetSize(),
                        olc::Pixel(
                                   w.GetColor().red,
@@ -138,9 +147,12 @@ protected:
                                   )
                        );
             
-            randomizedDirection(w);
-            
-            correctOutOfBounce(w);
+            DrawLine(prevWalker.GetCoord().x, prevWalker.GetCoord().y, w.GetCoord().x, w.GetCoord().y,
+                     olc::Pixel(
+                                w.GetColor().red,
+                                w.GetColor().green,
+                                w.GetColor().blue
+                                ));
         }
         
         return true;
