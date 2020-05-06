@@ -90,19 +90,19 @@ protected:
         
         Clear(olc::Pixel(74, 72, 69));
         
-        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 4, 2));
+        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 4, rand() % 3));
         
         return true;
     }
     
     bool OnUserUpdate(float fElapsedTime) override
     {
-//        timer += fElapsedTime;
-//
-//        if (timer >= 10.0F) {
-//            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 1, rand() % 2));
-//            timer = 0;
-//        }
+        timer += fElapsedTime;
+
+        if (timer >= 10.0F) {
+            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 4, rand() % 3));
+            timer = 0;
+        }
         
         for (auto &w : vecWalker)
         {

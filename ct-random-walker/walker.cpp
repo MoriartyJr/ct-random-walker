@@ -122,12 +122,12 @@ void Walker::DiffusionStep()
         }
     }
     
-    dirStepX = (upperLimitX - lowerLimitX) * sin(2*3.14*random()) + width/2;
-    dirStepY = (upperLimitY - lowerLimitY) * cos(2*3.14*random()) + height/2;
+    dirStepX = (upperLimitX - lowerLimitX) * sin(2*3.14*random()) + Walker::GetCoord().x;
+    dirStepY = (upperLimitY - lowerLimitY) * cos(2*3.14*random()) + Walker::GetCoord().y;
     
-    while (IsInCircle(width/2, height/2, upperLimitX - lowerLimitX -20, dirStepX, dirStepY)) {
-        dirStepX = (upperLimitX - lowerLimitX) * sin(2*3.14*random()) + width/2;
-        dirStepY = (upperLimitY - lowerLimitY) * cos(2*3.14*random()) + height/2;
+    while (IsInCircle(Walker::GetCoord().x, Walker::GetCoord().y, upperLimitX - lowerLimitX -20, dirStepX, dirStepY)) {
+        dirStepX = (upperLimitX - lowerLimitX) * sin(2*3.14*random()) + Walker::GetCoord().x;
+        dirStepY = (upperLimitY - lowerLimitY) * cos(2*3.14*random()) + Walker::GetCoord().y;
     }
     
     stepDir = { dirStepX, dirStepY };
