@@ -10,12 +10,12 @@ The program draws a random walker each 10 seconds. The positon, color and type o
 1. Diffusion-Limited Aggregation
 
 ## Screen shots of generated art
-![Screen Shot 1](/imgs/ScreenShot00)
+![Screen Shot 1](/imgs/ScreenShot00.png)
 
-![Screen Shot 2](/imgs/ScreenShot01)
+![Screen Shot 2](/imgs/ScreenShot01.png)
 
-![Screen Shot 3](/imgs/ScreenShot02)
+![Screen Shot 3](/imgs/ScreenShot02.png)
 
-![Screen Shot 4](/imgs/ScreenShot03)
+![Screen Shot 4](/imgs/ScreenShot03.png)
 
-![Screen Shot 5](/imgs/ScreenShot04)
+![Screen Shot 5](/imgs/ScreenShot04.png)
