@@ -55,6 +55,8 @@ public:
     
     sCoord stepDir;
     
+    std::vector<sCoord> vecStepTree;
+    
     Walker(int x, int y);
     Walker(int x, int y, int red, int green, int blue, int size, int type);
     Walker(sCoord coord, sColor color, int size, int type);
@@ -62,6 +64,8 @@ public:
     void TakeRandomStep();
     void DefaultStep();
     void LevyStep();
+    void DiffusionStep();
+    bool IsInCircle(int circleX, int circleY, int rad, int pointX, int pointY);
     
     void SetCoord(int x, int y)
     {
@@ -114,6 +118,10 @@ public:
         return size;
     };
     
+    int GetType()
+    {
+        return type;
+    }
 };
 
 #endif /* walker_h */

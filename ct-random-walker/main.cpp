@@ -90,19 +90,19 @@ protected:
         
         Clear(olc::Pixel(74, 72, 69));
         
-        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 1, rand() % 2));
+        vecWalker.push_back(Walker({ScreenWidth() / 2, ScreenHeight() / 2}, vecPalette.at(1), 4, 2));
         
         return true;
     }
     
     bool OnUserUpdate(float fElapsedTime) override
     {
-        timer += fElapsedTime;
-        
-        if (timer >= 10.0F) {
-            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 1, rand() % 2));
-            timer = 0;
-        }
+//        timer += fElapsedTime;
+//
+//        if (timer >= 10.0F) {
+//            vecWalker.push_back(Walker({rand() % ScreenWidth(), rand() % ScreenHeight()}, vecPalette.at(rand() % vecPalette.size()), 1, rand() % 2));
+//            timer = 0;
+//        }
         
         for (auto &w : vecWalker)
         {
@@ -118,12 +118,14 @@ protected:
                                   )
                        );
             
-            DrawLine(prevWalker.GetCoord().x, prevWalker.GetCoord().y, w.GetCoord().x, w.GetCoord().y,
-                     olc::Pixel(
-                                w.GetColor().red,
-                                w.GetColor().green,
-                                w.GetColor().blue
-                                ));
+            if (w.GetType() == 1) {
+                DrawLine(prevWalker.GetCoord().x, prevWalker.GetCoord().y, w.GetCoord().x, w.GetCoord().y,
+                         olc::Pixel(
+                                    w.GetColor().red,
+                                    w.GetColor().green,
+                                    w.GetColor().blue
+                                    ));
+            }
         }
         
         return true;
